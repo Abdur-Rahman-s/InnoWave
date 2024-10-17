@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.input-design {
+    @apply py-3 px-[10px] md:w-[190px] hover:scale-105 transition-all hover:border border-[#71717A] focus:border-orange outline-none text-xs rounded-md w-full mt-3 delay-200;
+}
+
+.nav-link-design {
+    position: relative;
+    /* For the ::before positioning */
+    @apply pb-2 md:pb-7 hover:font-semibold hover:text-black active:text-orange ;
+}
+
+.nav-link-design::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+}
+
+.card-layout {
+    @apply flex-grow-0 flex-shrink-0 basis-[calc(100%-24px)] sm:basis-[calc(50%-24px)] md:basis-[calc(33.33%-24px)] lg:basis-[calc(25%-54px)]
+}
+
+.nav-link-design:hover::before {
+    width: 100%;
+}
+
+
+.messege {
+    @apply w-[213px] bg-[#3F3F46] text-white px-[13px] py-[15px] rounded-[7px] translate-x-[88px] mt-4 font-onest text-xs ;
+}
+
+.messege2 {
+    @apply w-[213px] bg-[#F4F4F5] text-gray px-[13px] py-[15px]  mt-4 font-onest text-xs rounded-[7px] border border-[#E4E4E7] ;
+}
