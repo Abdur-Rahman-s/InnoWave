@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import IncidentOption from '../../Shared/IncidentOption';
 import { options } from '../../utilities/options';
+import InciidentThree from './InciidentThree';
 
 function IncidentTwo() {
     return (

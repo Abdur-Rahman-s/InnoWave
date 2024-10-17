@@ -8,7 +8,7 @@ import bellicon from '../../../public/Belicon.png';
 import Cross from '../../../public/Cros.png'
 import Button from './Button';
 
-const Nav = ({ title, value, text, classNames, className }) => {
+const Nav = ({ title, value, text, classNames, className , handleSubmit}) => {
     const [isActive, setIsActive] = useState(false);
     const location = useLocation();
 
@@ -53,7 +53,7 @@ const Nav = ({ title, value, text, classNames, className }) => {
     };
 
     return (
-        <nav>
+        <nav className='font-onest' >
             <div className='w-full border-b-[1px] border-border-color bg-nav-color pt-[23px]'>
                 <div className='lg:container mx-auto flex justify-between items-center inset-0 px-4 md:px-0 h-[59px] pb-[15px]'>
 
@@ -146,40 +146,43 @@ const Nav = ({ title, value, text, classNames, className }) => {
                         <h1 className='text-dark text-[26px] font-bold tracking-[-0.26px] text-orange '>{title}</h1>
                     </div>
                     <div className='md:flex gap-3 px-4'>
-                        <input placeholder='Search incident' className='input-design' />
-                        <input placeholder='Sort By: Date modified' className='input-design' />
+                        <input placeholder='Search incident' className='input-design input-animation' />
+                        <input placeholder='Sort By: Date modified' className='input-design input-animation' />
                         <Button className='md:py-3 w-full md:w-auto text-xs rounded-md mt-3'>
                             <Link to={linkPath()}>{buttonText()}</Link>
                         </Button>
                     </div>
                 </div>
 
-                
+
             </div>
-            <div className={cn('w-full bg-nav-color pt-[32px] pb-[23px] ' , className)}>
-                <div className='font-onest container mx-auto   ' >
-                        <div className='flex justify-between items-center' >
-
-                            <div className='flex items-center gap-3 ' >
-                                <img src={Cross} alt="" className='h-[41px]  w-[41px] shrink-0  cursor-pointer ' />
-                                <div>
-                                    <p>Home - Incidents - New Incident</p>
-                                    <h1 className='text-[26px] font-bold ' >New Incident</h1>
-                                </div>
-                            </div>
-                            <div className='h-[5px] w-[527px] border border-border-color rounded-[10px] ' style={{ background: 'linear-gradient(90deg, #F2692E 20%, white 20%)' }}></div>
+            <div className={cn('w-full bg-nav-color pt-8 pb-6', className)}>
+                <div className='font-onest lg:container mx-auto'>
+                    <div className='flex flex-col   md:flex-row justify-between items-center'>
+                        <div className='flex items-center gap-3 mb-4 md:mb-0'>
+                            <img src={Cross} alt="" className='h-10 w-10 shrink-0 cursor-pointer transition-transform hover:scale-110' />
                             <div>
-                                <Button className={'bg-white text-[#71717A] font-bold  rounded-md'}>
-                                    Back
-                                </Button>
-                                <Button className={'rounded-md text-xs ml-3'}>
-                                    Next step
-                                </Button>
+                                <p className='text-sm text-gray-500'>Home - Incidents - New Incident</p>
+                                <h1 className='text-2xl font-bold leading-tight'>New Incident</h1>
                             </div>
+                        </div>
 
+                        <div className='w-[80%] md:w-[30%] lg:w-[527px] h-[5px] border border-border-color rounded-[10px] my-4 md:my-0'>
+                            <div className='h-full' style={{ background: 'linear-gradient(90deg, #F2692E 20%, white 20%)' }}></div>
+                        </div>
+
+                        <div className='flex gap-3 mt-4 md:mt-0'>
+                            <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
+                                <span className='text-gray'>Back</span>
+                            </Button>
+                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange-600'>
+                                <Link to={'/next-step'} onClick={handleSubmit} >Next step</Link>
+                            </Button>
                         </div>
                     </div>
                 </div>
+            </div>
+
         </nav>
     );
 };

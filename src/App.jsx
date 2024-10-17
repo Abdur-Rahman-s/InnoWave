@@ -6,6 +6,7 @@ import IncidentsOne from './Components/Page/incidents/IncidentsOne';
 import { IconBase } from 'react-icons';
 import IncidentTwo from './Components/Page/incidents/incidentTwo';
 import Nav from './Components/Shared/Nav';
+import InciidentThree from './Components/Page/incidents/InciidentThree';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -37,12 +38,17 @@ const Layout = ({ children }) => {
     }
     if(location.pathname === '/get-started') {
       return 'hidden'
+    }if(location.pathname === '/next-step'){
+      return 'hidden'
     }
     return ''; 
   };
 
     const menuControl = ()=> {
       if (location.pathname === '/get-started') {
+        return 'block'
+      }
+      if(location.pathname === '/next-step'){
         return 'block'
       }
       else{
@@ -80,6 +86,7 @@ function App() {
           <Route path="/incidents" element={<Incidents />} />
           <Route path="/new-incident" element={<IncidentsOne />} />
           <Route path="/get-started" element={<IncidentTwo/>} />
+          <Route path='/next-step' element={<InciidentThree/>} />
         </Routes>
       </Layout>
     </BrowserRouter>
