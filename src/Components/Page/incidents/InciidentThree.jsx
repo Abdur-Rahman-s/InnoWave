@@ -20,9 +20,8 @@ const reducer = (state, action) => {
     }
 };
 
-const IncidentThree = ({ onSubmit }) => {
-    const [state, dispatch] = useReducer(reducer, initialState);
-    const navigate = useNavigate(); // Use useNavigate for navigation
+const IncidentThree = () => {
+    const { state, dispatch } = useContext(HandleStateContext);
 
     const handleTitleChange = (e) => {
         dispatch({ type: 'SET_TITLE', payload: e.target.value });
@@ -31,13 +30,7 @@ const IncidentThree = ({ onSubmit }) => {
     const handleDescriptionChange = (e) => {
         dispatch({ type: 'SET_DESCRIPTION', payload: e.target.value });
     };
-
-    const handleSubmit = () => {
-        onSubmit(state.title, state.description);
-        navigate('/next-step'); // Navigate after submit
-        console.log(state.title, state.description);
-    };
-
+ 
     return (
         <section className='bg-gray-50 py-10 px-4'>
             <div className='flex justify-center'>
@@ -75,14 +68,6 @@ const IncidentThree = ({ onSubmit }) => {
                         onChange={handleDescriptionChange}
                         className='h-32 text-sm w-full lg:max-w-[752px] resize-none text-gray outline-none border px-4 py-3 border-border-color focus:border-orange input-animation rounded-md'
                     ></textarea>
-
-                    {/* Submit Button */}
-                    <button
-                        onClick={handleSubmit}
-                        className='bg-orange-500 text-white py-2 px-4 rounded-md mt-4'
-                    >
-                        Submit
-                    </button>
                 </div>
             </div>
         </section>

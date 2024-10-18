@@ -7,6 +7,8 @@ import { IconBase } from 'react-icons';
 import IncidentTwo from './Components/Page/incidents/incidentTwo';
 import Nav from './Components/Shared/Nav';
 import InciidentThree from './Components/Page/incidents/InciidentThree';
+import { IncientFour } from './Components/Page/incidents/IncientFour';
+import { HandleStateProvider } from './Components/utilities/Context';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -27,34 +29,40 @@ const Layout = ({ children }) => {
       case '/cypher-ai':
         return 'Cypher AI';
       default:
-        return ''; 
+        return '';
     }
   };
 
   // Function to hide the menu for specific routes
   const handleMenu = () => {
     if (location.pathname === '/new-incident') {
-      return 'hidden'; 
+      return 'hidden';
     }
-    if(location.pathname === '/get-started') {
+    if (location.pathname === '/get-started') {
       return 'hidden'
-    }if(location.pathname === '/next-step'){
+    } if (location.pathname === '/next-step') {
       return 'hidden'
     }
-    return ''; 
+    if (location.pathname === '/second-step') {
+      return 'hidden'
+    }
+    return '';
   };
 
-    const menuControl = ()=> {
-      if (location.pathname === '/get-started') {
-        return 'block'
-      }
-      if(location.pathname === '/next-step'){
-        return 'block'
-      }
-      else{
-        return 'hidden'
-      }
+  const menuControl = () => {
+    if (location.pathname === '/get-started') {
+      return 'block'
     }
+    if (location.pathname === '/next-step') {
+      return 'block'
+    }
+    if (location.pathname === '/second-step') {
+      return 'block'
+    }
+    else {
+      return 'hidden'
+    }
+  }
 
   // Function to get the subtitle based on the current route
   const getPageValue = () => {
@@ -64,7 +72,7 @@ const Layout = ({ children }) => {
       case '/incidents':
         return 'Home - Incidents';
       default:
-        return ''; 
+        return '';
     }
   };
 
@@ -79,16 +87,20 @@ const Layout = ({ children }) => {
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/incidents" element={<Incidents />} />
-          <Route path="/new-incident" element={<IncidentsOne />} />
-          <Route path="/get-started" element={<IncidentTwo/>} />
-          <Route path='/next-step' element={<InciidentThree/>} />
-        </Routes>
-      </Layout>
+      <HandleStateProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/incidents" element={<Incidents />} />
+            <Route path="/new-incident" element={<IncidentsOne />} />
+            <Route path="/get-started" element={<IncidentTwo />} />
+            <Route path="/next-step" element={<InciidentThree />} />
+            <Route path="/second-step" element={<IncientFour />} />
+
+          </Routes>
+        </Layout>
+      </HandleStateProvider>
     </BrowserRouter>
   );
 }

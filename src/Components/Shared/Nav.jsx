@@ -8,7 +8,7 @@ import bellicon from '../../../public/Belicon.png';
 import Cross from '../../../public/Cros.png'
 import Button from './Button';
 
-const Nav = ({ title, value, text, classNames, className , handleSubmit}) => {
+const Nav = ({ title, value, text, classNames, className, handleSubmit }) => {
     const [isActive, setIsActive] = useState(false);
     const location = useLocation();
 
@@ -50,6 +50,27 @@ const Nav = ({ title, value, text, classNames, className , handleSubmit}) => {
             return '/new-incident';
         }
         return '';
+    };
+
+
+    const incidentLink = () => {
+        const location = useLocation(); // এটা ফাংশনের ভিতর ডিরেক্ট ব্যবহার করা হচ্ছে
+    
+        if (location.pathname === '/next-step') {
+            return '/second-step'; // 'next-step' এ থাকলে 'second-step' এ যাবে
+        } else if (location.pathname === '/get-started') {
+            return '/next-step';
+        }
+        return '/new-incident'; // ডিফল্ট রাউট যদি কোনো শর্ত না মেলে
+    };
+    
+    
+    const incidentText = () => {
+        if (location.pathname === '/second-step') {
+            return 'Finished';
+        } else {
+            return 'Next step';
+        }
     };
 
     return (
@@ -175,9 +196,13 @@ const Nav = ({ title, value, text, classNames, className , handleSubmit}) => {
                             <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
                                 <span className='text-gray'>Back</span>
                             </Button>
-                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange-600'>
-                                <Link to={'/next-step'} onClick={handleSubmit} >Next step</Link>
+                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange'>
+                                <Link to={incidentLink()}>
+                                    {incidentText()}
+                                </Link>
                             </Button>
+
+
                         </div>
                     </div>
                 </div>
