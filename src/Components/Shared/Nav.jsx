@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { GrMenu, GrClose } from "react-icons/gr";
 import cn from 'classnames';
@@ -7,11 +7,16 @@ import profile from '../../../public/Profile.png';
 import bellicon from '../../../public/Belicon.png';
 import Cross from '../../../public/Cros.png'
 import Button from './Button';
+import { HandleStateContext } from '../utilities/Context';
 
-const Nav = ({ title, value, text, classNames, className, handleSubmit }) => {
+const Nav = ({ title, value, text, classNames, className , onsubmit }) => {
     const [isActive, setIsActive] = useState(false);
     const location = useLocation();
+    const {state , handleSubmit  } = useContext(HandleStateContext);
 
+    const submitHandler = () => {
+        handleSubmit(state.Value, state.description);
+    };
     const ToggleMenu = () => {
         setIsActive(prevState => !prevState);
     };
@@ -25,6 +30,8 @@ const Nav = ({ title, value, text, classNames, className, handleSubmit }) => {
         { name: "Documents", path: "/documents" },
         { name: "Cypher AI", path: "/cypher-ai" },
     ];
+
+
 
     const buttonText = () => {
         switch (location.pathname) {
@@ -54,14 +61,14 @@ const Nav = ({ title, value, text, classNames, className, handleSubmit }) => {
 
 
     const incidentLink = () => {
-        const location = useLocation(); // এটা ফাংশনের ভিতর ডিরেক্ট ব্যবহার করা হচ্ছে
+        const location = useLocation(); 
     
         if (location.pathname === '/next-step') {
-            return '/second-step'; // 'next-step' এ থাকলে 'second-step' এ যাবে
+            return '/second-step'; 
         } else if (location.pathname === '/get-started') {
             return '/next-step';
         }
-        return '/new-incident'; // ডিফল্ট রাউট যদি কোনো শর্ত না মেলে
+        return '/new-incident'; 
     };
     
     
@@ -196,7 +203,7 @@ const Nav = ({ title, value, text, classNames, className, handleSubmit }) => {
                             <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
                                 <span className='text-gray'>Back</span>
                             </Button>
-                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange'>
+                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange' onClick={submitHandler} >
                                 <Link to={incidentLink()}>
                                     {incidentText()}
                                 </Link>
