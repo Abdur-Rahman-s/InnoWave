@@ -11,8 +11,7 @@ import { IncidentFour } from './Components/Page/incidents/IncientFour';
 import Finished from './Components/Page/incidents/Finished';
 import Location from './Components/Page/Location';
 import BlankPage from './Components/Shared/BlankPage';
-
-const image_2 = '/public/HeadingImage.svg'; 
+import image_2 from '../public/HeadingImage.svg'
 
 const Layout = ({ children }) => {
   const location = useLocation();
