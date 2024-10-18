@@ -51,7 +51,6 @@ const Layout = ({ children }) => {
     return 'hidden';
   };
 
-  // Function to get the subtitle based on the current route
   const getPageValue = () => {
     switch (location.pathname) {
       case '/dashboard':
@@ -71,7 +70,7 @@ const Layout = ({ children }) => {
         title={getPageTitle()} 
         value={getPageValue()} 
         classNames={handleMenu()} 
-        className={menuControl()}Pass the function without invoking it
+        className={menuControl()}
       />
       {children}
     </>

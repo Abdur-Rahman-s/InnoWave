@@ -4,7 +4,7 @@
 
 
 .input-design {
-    @apply py-3 px-[10px] md:w-[190px] hover:scale-105 transition-all hover:border border-[#71717A] focus:border-orange outline-none text-xs rounded-md w-full mt-3 delay-200;
+    @apply py-3   md:w-[190px] hover:scale-105 transition-all hover:border border-[#71717A] focus:border-orange outline-none text-xs rounded-md w-full mt-3 delay-200;
 }
 
 .nav-link-design {

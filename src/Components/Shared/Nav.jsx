@@ -7,7 +7,8 @@ import profile from '../../../public/Profile.png';
 import bellicon from '../../../public/Belicon.png';
 import Cross from '../../../public/Cros.png'
 import Button from './Button';
-import { HandleStateContext } from '../utilities/Context';
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
+
 
 const Nav = ({ title, value, text, classNames, className  }) => {
     const [isActive, setIsActive] = useState(false);
@@ -173,8 +174,17 @@ const Nav = ({ title, value, text, classNames, className  }) => {
                         <h1 className='text-dark text-[26px] font-bold tracking-[-0.26px] text-orange '>{title}</h1>
                     </div>
                     <div className='md:flex gap-3 px-4'>
-                        <input placeholder='Search incident' className='input-design input-animation' />
-                        <input placeholder='Sort By: Date modified' className='input-design input-animation' />
+                    <div className='relative '>
+                            <input
+                                type="text"
+                                placeholder='Pinpoint damage'
+                                className='input-design input-animation px-8 '
+                            />
+                            <span className='absolute text-gray top-3 inset-y-0 left-2 flex items-center text-gray-500'>
+                                <HiOutlineMagnifyingGlass />
+                            </span>
+                        </div>
+                        <input placeholder='Sort By: Date modified' className='input-design input-animation px-[10px]' />
                         <Button className='md:py-3 w-full md:w-auto text-xs rounded-md mt-3'>
                             <Link to={linkPath()}>{buttonText()}</Link>
                         </Button>
