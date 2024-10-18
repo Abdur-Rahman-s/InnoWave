@@ -9,14 +9,12 @@ import Cross from '../../../public/Cros.png'
 import Button from './Button';
 import { HandleStateContext } from '../utilities/Context';
 
-const Nav = ({ title, value, text, classNames, className , onsubmit }) => {
+const Nav = ({ title, value, text, classNames, className  }) => {
     const [isActive, setIsActive] = useState(false);
     const location = useLocation();
-    const {state , handleSubmit  } = useContext(HandleStateContext);
 
-    const submitHandler = () => {
-        handleSubmit(state.Value, state.description);
-    };
+
+
     const ToggleMenu = () => {
         setIsActive(prevState => !prevState);
     };
@@ -30,8 +28,6 @@ const Nav = ({ title, value, text, classNames, className , onsubmit }) => {
         { name: "Documents", path: "/documents" },
         { name: "Cypher AI", path: "/cypher-ai" },
     ];
-
-
 
     const buttonText = () => {
         switch (location.pathname) {
@@ -68,6 +64,9 @@ const Nav = ({ title, value, text, classNames, className , onsubmit }) => {
         } else if (location.pathname === '/get-started') {
             return '/next-step';
         }
+        else if (location.pathname === '/second-step') {
+            return '/finished';
+        }
         return '/new-incident'; 
     };
     
@@ -87,7 +86,7 @@ const Nav = ({ title, value, text, classNames, className , onsubmit }) => {
 
                     {/* Logo Section */}
                     <div className='Logo'>
-                        <img src={logo} alt="Logo" className='w-32' />
+                        <Link to={'/dashboard'} ><img src={logo} alt="Logo" className='w-32' /></Link>
                     </div>
 
                     {/* Dynamic Navigation Links for larger screens */}
@@ -203,12 +202,9 @@ const Nav = ({ title, value, text, classNames, className , onsubmit }) => {
                             <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
                                 <span className='text-gray'>Back</span>
                             </Button>
-                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange' onClick={submitHandler} >
-                                <Link to={incidentLink()}>
-                                    {incidentText()}
-                                </Link>
+                             <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange' >
+                                <Link  to={incidentLink()}>{incidentText()}</Link>
                             </Button>
-
 
                         </div>
                     </div>

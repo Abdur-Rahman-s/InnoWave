@@ -1,8 +1,5 @@
-import React, { useContext, useReducer } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import Nav from '../../Shared/Nav';
+import React, { useContext } from 'react';
 import { HandleStateContext } from '../../utilities/Context';
-
 
 const IncidentThree = () => {
     const { state, dispatch } = useContext(HandleStateContext);
@@ -14,6 +11,8 @@ const IncidentThree = () => {
     const handleDescriptionChange = (e) => {
         dispatch({ type: 'SET_DESCRIPTION', payload: e.target.value });
     };
+
+
 
     return (
         <section className='bg-gray-50 py-10 px-4'>
@@ -27,11 +26,11 @@ const IncidentThree = () => {
                             Make a title that will easily identify the incidents
                         </p>
                     </div>
-                    <form >
+                    <form className='flex flex-col gap-6'>
                         <input
                             type="text"
                             placeholder='Add title here'
-                            value={state.title}
+                            value={state.Value} // Use state.Value instead of state.title
                             onChange={handleTitleChange}
                             className='border border-border-color text-gray w-full lg:max-w-[752px] py-3 px-4 text-sm outline-none focus:border-orange rounded-md input-animation'
                         />
@@ -51,6 +50,7 @@ const IncidentThree = () => {
                             onChange={handleDescriptionChange}
                             className='h-32 text-sm w-full lg:max-w-[752px] resize-none text-gray outline-none border px-4 py-3 border-border-color focus:border-orange input-animation rounded-md'
                         ></textarea>
+                        <button type="submit" className="hidden" />
                     </form>
                 </div>
             </div>

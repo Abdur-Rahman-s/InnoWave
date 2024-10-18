@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Dashboard from './Components/Page/Dashboard';
 import Incidents from './Components/Page/incidents/Incidents';
 import IncidentsOne from './Components/Page/incidents/IncidentsOne';
-import { IconBase } from 'react-icons';
 import IncidentTwo from './Components/Page/incidents/incidentTwo';
 import Nav from './Components/Shared/Nav';
 import InciidentThree from './Components/Page/incidents/InciidentThree';
-import { IncientFour } from './Components/Page/incidents/IncientFour';
-import { HandleStateProvider } from './Components/utilities/Context';
+import { HandleStateContext, HandleStateProvider } from './Components/utilities/Context';
+import { IncidentFour } from './Components/Page/incidents/IncientFour';
+import Finished from './Components/Page/incidents/Finished';
+
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const { handleSubmit } = useContext(HandleStateContext);
 
   // Function to get the page title based on the current route
   const getPageTitle = () => {
@@ -35,34 +37,19 @@ const Layout = ({ children }) => {
 
   // Function to hide the menu for specific routes
   const handleMenu = () => {
-    if (location.pathname === '/new-incident') {
+    if (['/new-incident', '/get-started', '/next-step', '/second-step' , '/finished'  ].includes(location.pathname)) {
       return 'hidden';
-    }
-    if (location.pathname === '/get-started') {
-      return 'hidden'
-    } if (location.pathname === '/next-step') {
-      return 'hidden'
-    }
-    if (location.pathname === '/second-step') {
-      return 'hidden'
     }
     return '';
   };
 
+  // Function to control the visibility of the menu
   const menuControl = () => {
-    if (location.pathname === '/get-started') {
-      return 'block'
+    if (['/get-started', '/next-step', '/second-step'].includes(location.pathname)) {
+      return 'block';
     }
-    if (location.pathname === '/next-step') {
-      return 'block'
-    }
-    if (location.pathname === '/second-step') {
-      return 'block'
-    }
-    else {
-      return 'hidden'
-    }
-  }
+    return 'hidden';
+  };
 
   // Function to get the subtitle based on the current route
   const getPageValue = () => {
@@ -76,9 +63,16 @@ const Layout = ({ children }) => {
     }
   };
 
+
+
   return (
     <>
-      <Nav title={getPageTitle()} value={getPageValue()} classNames={handleMenu()} className={menuControl()} />
+      <Nav 
+        title={getPageTitle()} 
+        value={getPageValue()} 
+        classNames={handleMenu()} 
+        className={menuControl()}Pass the function without invoking it
+      />
       {children}
     </>
   );
@@ -90,15 +84,14 @@ function App() {
       <HandleStateProvider>
         <Layout>
           <Routes>
-            
             <Route path="/" element={<Navigate to="/dashboard" />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/incidents" element={<Incidents />} />
             <Route path="/new-incident" element={<IncidentsOne />} />
             <Route path="/get-started" element={<IncidentTwo />} />
             <Route path="/next-step" element={<InciidentThree />} />
-            <Route path="/second-step" element={<IncientFour />} />
-
+            <Route path="/second-step" element={<IncidentFour />} />
+            <Route path="/finished" element={<Finished />} />
           </Routes>
         </Layout>
       </HandleStateProvider>

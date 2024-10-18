@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useState } from 'react';
 
 export const HandleStateContext = createContext();
 
@@ -18,16 +18,12 @@ const reducer = (state, action) => {
     }
 };
 
-// Move handleSubmit inside the provider
-const handleSubmit = (Value, description) => {
-    console.log("Submitting with:", Value, description);
-};
-handleSubmit()
+
+
 export const HandleStateProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-
     return (
-        <HandleStateContext.Provider value={{ state, dispatch, handleSubmit }}>
+        <HandleStateContext.Provider value={{ state, dispatch   }}>
             {children}
         </HandleStateContext.Provider>
     );

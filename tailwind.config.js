@@ -24,7 +24,7 @@ export default {
         },
       },
       animation: {
-        'reveal': 'reveal 0.6s ease-out forwards', // Adjusted for smooth revealing effect
+        'reveal': 'reveal 0.6s ease-out forwards',
       },
       
     },
