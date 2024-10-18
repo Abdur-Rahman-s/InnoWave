@@ -12,7 +12,7 @@ import Finished from './Components/Page/incidents/Finished';
 import Location from './Components/Page/Location';
 import BlankPage from './Components/Shared/BlankPage';
 
-const image_2 = '/public/HeadingImage.svg'; // Public folder থেকে ইমেজের পাথ
+const image_2 = '/public/HeadingImage.svg'; 
 
 const Layout = ({ children }) => {
   const location = useLocation();

@@ -3,7 +3,7 @@ import { TiLocation } from "react-icons/ti";
 import Card from '../Shared/Card';
 import LocationCard from '../Shared/LocationCard';
 import image_1 from '../../../public/Build_1.png'
-
+import  Vector from '../../../public/Vector.png'
 function Location() {
     return (
         <section className='container mx-auto px-4 md:px-6 lg:px-0'>
@@ -23,7 +23,7 @@ function Location() {
 
                         <div className='flex items-center gap-5'>
                             <div className='h-9 w-9 rounded-full text-gray bg-[#F4F4F5] flex items-center justify-center shadow-lg'>
-                                <img src={'../../../public/Vector.png'} alt="" />
+                                <img src={Vector} alt="" />
                             </div>
                             <div  >
                                 <p className='text-sm text-gray leading-6'>Approx. Cost:</p>
