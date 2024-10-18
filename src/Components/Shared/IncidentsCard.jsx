@@ -9,8 +9,8 @@ export const IncidentsCard = ({Image , title , description} ) => {
                     <img src={Image} alt="Frame" className=' h-[54px] w-[54px] '  />
                 </div>
                 <div  >
-                    <h1 >{title}</h1>
-                    <p  >{description}</p>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
                 </div>
             </div>
         </div>

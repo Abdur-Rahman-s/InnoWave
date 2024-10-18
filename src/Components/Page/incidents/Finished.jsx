@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+import Button from '../../Shared/Button';
+import { Link } from 'react-router-dom';
 
 function Finished() {
     const [showText, setShowText] = useState(false);
@@ -22,6 +24,7 @@ function Finished() {
                     Finished!
                 </p>
             )}
+            <Button className={'rounded-md'}><Link to={'/location'} >Done</Link></Button>
         </section>
     );
 }

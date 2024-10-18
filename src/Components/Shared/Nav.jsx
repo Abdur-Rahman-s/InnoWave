@@ -141,11 +141,11 @@ const Nav = ({ title, value, text, classNames, className  }) => {
                     </ul>
 
                     {/* Profile Section for Mobile */}
-                    <div className='flex justify-start items-center gap-4 mt-8'>
+                    <div className='flex justify-start items-center gap-2 mt-8'>
                         <img src={profile} alt="Profile" className='h-8 w-8 rounded-full' />
                         <div>
-                            <p className='font-semibold text-xs md:text-sm'>Usman Zafar</p>
-                            <p className='text-xs md:text-sm text-gray-500'>usmanzafar@gmail.com</p>
+                            <p className='font-semibold text-xs ms:text-sm'>Usman Zafar</p>
+                            <p className='text-[10px] sm:text-sm text-gray-500'>usmanzafar@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@ const Nav = ({ title, value, text, classNames, className  }) => {
                 <div id='Dashboard' className='lg:container mx-auto md:flex justify-center md:justify-between items-center pt-8 pb-[23px]'>
                     <div className='text-center md:text-start'>
                         <p className='text-xs text-gray'>{value}</p>
-                        <h1 className='text-dark text-[26px] font-bold tracking-[-0.26px] text-orange '>{title}</h1>
+                        <h1 className='text-dark text-[26px] font-bold tracking-[-0.26px] '>{title}</h1>
                     </div>
                     <div className='md:flex gap-3 px-4'>
                     <div className='relative '>

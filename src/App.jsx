@@ -9,7 +9,9 @@ import InciidentThree from './Components/Page/incidents/InciidentThree';
 import { HandleStateContext, HandleStateProvider } from './Components/utilities/Context';
 import { IncidentFour } from './Components/Page/incidents/IncientFour';
 import Finished from './Components/Page/incidents/Finished';
+import Location from './Components/Page/Location';
 
+const image_2 = '/public/HeadingImage.svg'; // Public folder থেকে ইমেজের পাথ
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -23,13 +25,12 @@ const Layout = ({ children }) => {
       case '/incidents':
         return 'Incidents';
       case '/locations':
-        return 'Locations';
-      case '/activities':
-        return 'Activities';
-      case '/documents':
-        return 'Documents';
-      case '/cypher-ai':
-        return 'Cypher AI';
+        return (
+          <div className='flex gap-2 ' >
+            <img src={image_2} alt="Incident 2" />
+            <p>DR-4699 March 2023 Severe Storms</p>
+          </div>
+        );
       default:
         return '';
     }
@@ -37,7 +38,7 @@ const Layout = ({ children }) => {
 
   // Function to hide the menu for specific routes
   const handleMenu = () => {
-    if (['/new-incident', '/get-started', '/next-step', '/second-step' , '/finished'  ].includes(location.pathname)) {
+    if (['/new-incident', '/get-started', '/next-step', '/second-step', '/finished'].includes(location.pathname)) {
       return 'hidden';
     }
     return '';
@@ -57,12 +58,12 @@ const Layout = ({ children }) => {
         return 'Welcome back';
       case '/incidents':
         return 'Home - Incidents';
+      case '/locations':
+        return 'Incidents - DR-4699 March 2023 Severe Storms';
       default:
         return '';
     }
   };
-
-
 
   return (
     <>
@@ -91,6 +92,7 @@ function App() {
             <Route path="/next-step" element={<InciidentThree />} />
             <Route path="/second-step" element={<IncidentFour />} />
             <Route path="/finished" element={<Finished />} />
+            <Route path="/locations" element={<Location />} />
           </Routes>
         </Layout>
       </HandleStateProvider>
