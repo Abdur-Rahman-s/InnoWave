@@ -2,6 +2,7 @@ import React from 'react';
 import { TiLocation } from "react-icons/ti";
 import Card from '../Shared/Card';
 import LocationCard from '../Shared/LocationCard';
+import image_1 from '../../../public/Build_1.png'
 
 function Location() {
     return (
@@ -66,13 +67,13 @@ function Location() {
                             </p>
                         </div>
                         <LocationCard
-                            image={'/public/Build_1.png'}
+                            image={image_1}
                             Title={'Activity name'}
                             heading={'Location name . 16.12212, -122.1424'}
                             Price={'$1,456,654.00'}
                         />
                         <LocationCard
-                            image={'/public/Build_1.png'}
+                            image={image_1}
                             Title={'Activity name'}
                             heading={'Location name . 16.12212, -122.1424'}
                             Price={'$1,456,654.00'}
@@ -88,13 +89,13 @@ function Location() {
                             </p>
                         </div>
                         <LocationCard
-                            image={'/public/Build_1.png'}
+                            image={image_1}
                             Title={'Document name'}
                             heading={'Location name . 16.12212, -122.1424'}
                             Price={'$1,456,654.00'}
                         />
                         <LocationCard
-                            image={'/public/Build_1.png'}
+                            image={image_1}
                             Title={'Document name'}
                             heading={'Location name . 16.12212, -122.1424'}
                             Price={'$1,456,654.00'}
