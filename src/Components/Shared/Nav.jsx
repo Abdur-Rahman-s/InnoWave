@@ -140,7 +140,7 @@ const Nav = ({ title, value, text, classNames, className }) => {
                     <div className='hidden lg:flex items-center gap-4'>
                         <div className='relative h-12 w-12 bg-white rounded-full flex  '>
                             <div className='h-[10px] w-[10px] rounded-full bg-green-500 absolute left-9 top-1 ' ></div>
-                            <img src={bellicon} alt="Bell Icon" className='p-2 absolute left-1 top-1 ' />
+                            <img src={bellicon} alt="Bell Icon" className='p-2 absolute left-1 ' />
                         </div>
                         <img src={profile} alt="Profile" className='h-12 w-12 rounded-full' />
                         <div>
@@ -243,7 +243,7 @@ const Nav = ({ title, value, text, classNames, className }) => {
                         </div>
 
                         <div className='flex gap-3 mt-4 md:mt-0'>
-                            <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
+                        <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
                                 <Link to={PreviusPage()} className='text-gray w-full h-full flex items-center justify-center'>
                                     Back
                                 </Link>
@@ -251,10 +251,9 @@ const Nav = ({ title, value, text, classNames, className }) => {
 
                             <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange'>
                                 <Link to={incidentLink()} className='w-full h-full flex items-center justify-center'>
+                                    {incidentText()}
                                 </Link>
-                                {incidentText()}
                             </Button>
-
 
                         </div>
                     </div>
