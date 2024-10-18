@@ -26,9 +26,11 @@ const Layout = ({ children }) => {
         return 'Incidents';
       case '/locations':
         return (
-          <div className='flex gap-2 ' >
-            <img src={image_2} alt="Incident 2" />
-            <p>DR-4699 March 2023 Severe Storms</p>
+          <div className='flex gap-2 items-center justify-center mt-2 ' >
+            <img src={image_2} alt="Incident " />
+            <p className='text-[16px] sm:text-[20px] md:text-[1rem] lg:text-[1.5rem]'>
+              DR-4699 March 2023 Severe Storms
+            </p>
           </div>
         );
       default:
@@ -67,10 +69,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Nav 
-        title={getPageTitle()} 
-        value={getPageValue()} 
-        classNames={handleMenu()} 
+      <Nav
+        title={getPageTitle()}
+        value={getPageValue()}
+        classNames={handleMenu()}
         className={menuControl()}
       />
       {children}

@@ -24,7 +24,7 @@ function Finished() {
                     Finished!
                 </p>
             )}
-            <Button className={'rounded-md'}><Link to={'/location'} >Done</Link></Button>
+            <Button className={'rounded-md'}><Link to={'/locations'} >Done</Link></Button>
         </section>
     );
 }

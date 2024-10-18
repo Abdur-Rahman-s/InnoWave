@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { GrMenu, GrClose } from "react-icons/gr";
 import cn from 'classnames';
@@ -10,11 +10,14 @@ import Button from './Button';
 import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 
 
-const Nav = ({ title, value, text, classNames, className  }) => {
+const Nav = ({ title, value, text, classNames, className }) => {
     const [isActive, setIsActive] = useState(false);
+    const [activeLink, setActiveLink] = useState('');
     const location = useLocation();
 
-
+    function handleActiveLink(linkName) {
+        setActiveLink(linkName); // Using prev state to toggle
+    }
 
     const ToggleMenu = () => {
         setIsActive(prevState => !prevState);
@@ -57,21 +60,47 @@ const Nav = ({ title, value, text, classNames, className  }) => {
     };
 
 
-    const incidentLink = () => {
-        const location = useLocation(); 
-    
+    const pathsWithBorder = {
+        '/dashboard': 'Dashboard',
+        '/incidents': 'Incidents',
+        '/locations': 'Locations',
+        '/activities': 'Activities',
+        '/documents': 'Documents',
+        '/cypher-ai': 'Cypher AI',
+      };
+
+    const PreviusPage = () => {
+        if (location.pathname === '/get-started') {
+            return '/new-incident'
+        }
         if (location.pathname === '/next-step') {
-            return '/second-step'; 
+            return '/get-started'
+        }
+        if (location.pathname === '/second-step') {
+            return '/next-step'
+        }
+    }
+    useEffect(() => {
+        const currentLink = pathsWithBorder[location.pathname];
+        if (currentLink) {
+            setActiveLink(currentLink); // Set activeLink based on current location
+        }
+    }, [location.pathname]);
+    const incidentLink = () => {
+        const location = useLocation();
+
+        if (location.pathname === '/next-step') {
+            return '/second-step';
         } else if (location.pathname === '/get-started') {
             return '/next-step';
         }
         else if (location.pathname === '/second-step') {
             return '/finished';
         }
-        return '/new-incident'; 
+        return '/new-incident';
     };
-    
-    
+
+
     const incidentText = () => {
         if (location.pathname === '/second-step') {
             return 'Finished';
@@ -92,15 +121,19 @@ const Nav = ({ title, value, text, classNames, className  }) => {
 
                     {/* Dynamic Navigation Links for larger screens */}
                     <div className='hidden md:flex items-center'>
-                        <ul className='flex gap-6 text-gray-600'>
-                            {navLinks.map(link => (
-                                <li key={link.name}>
-                                    <Link to={link.path} className='nav-link-design'>
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                    <ul className="flex gap-6 text-gray-600">
+    {navLinks.map(link => (
+        <li key={link.name}>
+            <Link
+                to={link.path}
+                className={`nav-link-design ${activeLink === link.name || pathsWithBorder[location.pathname] === link.name ? 'border-b-2 border-dark' : 'border-none'}`} // Match active link or current location
+                onClick={() => handleActiveLink(link.name)}
+            >
+                {link.name}
+            </Link>
+        </li>
+    ))}
+</ul>
                     </div>
 
                     {/* Profile Section for larger screens */}
@@ -126,7 +159,7 @@ const Nav = ({ title, value, text, classNames, className  }) => {
 
             {/* Mobile Menu */}
             {isActive && (
-                <div className='md:hidden fixed top-0 right-0 w-1/2 h-full bg-white shadow-lg p-4 z-50'>
+                <div className='md:hidden fixed top-0 right-0 w-1/2 h-full bg-white shadow-lg p-4 z-50 animate-reveal '>
                     <button onClick={ToggleMenu} className='text-2xl absolute top-4 right-4 mt-8'>
                         <GrClose className='text-xl' />
                     </button>
@@ -174,7 +207,7 @@ const Nav = ({ title, value, text, classNames, className  }) => {
                         <h1 className='text-dark text-[26px] font-bold tracking-[-0.26px] '>{title}</h1>
                     </div>
                     <div className='md:flex gap-3 px-4'>
-                    <div className='relative '>
+                        <div className='relative '>
                             <input
                                 type="text"
                                 placeholder='Pinpoint damage'
@@ -185,7 +218,7 @@ const Nav = ({ title, value, text, classNames, className  }) => {
                             </span>
                         </div>
                         <input placeholder='Sort By: Date modified' className='input-design input-animation px-[10px]' />
-                        <Button className='md:py-3 w-full md:w-auto text-xs rounded-md mt-3'>
+                        <Button className='md:py-3 w-full md:w-auto text-xs rounded-md mt-3 shadow-md hover:shadow-lg'>
                             <Link to={linkPath()}>{buttonText()}</Link>
                         </Button>
                     </div>
@@ -210,10 +243,10 @@ const Nav = ({ title, value, text, classNames, className  }) => {
 
                         <div className='flex gap-3 mt-4 md:mt-0'>
                             <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
-                                <span className='text-gray'>Back</span>
+                                <span className='text-gray'  ><Link to={PreviusPage()}  >Back</Link></span>
                             </Button>
-                             <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange' >
-                                <Link  to={incidentLink()}>{incidentText()}</Link>
+                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange' >
+                                <Link to={incidentLink()}>{incidentText()}</Link>
                             </Button>
 
                         </div>
