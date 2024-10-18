@@ -10,12 +10,12 @@ import { HandleStateContext, HandleStateProvider } from './Components/utilities/
 import { IncidentFour } from './Components/Page/incidents/IncientFour';
 import Finished from './Components/Page/incidents/Finished';
 import Location from './Components/Page/Location';
+import BlankPage from './Components/Shared/BlankPage';
 
 const image_2 = '/public/HeadingImage.svg'; // Public folder থেকে ইমেজের পাথ
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const { handleSubmit } = useContext(HandleStateContext);
 
   // Function to get the page title based on the current route
   const getPageTitle = () => {
@@ -33,6 +33,12 @@ const Layout = ({ children }) => {
             </p>
           </div>
         );
+      case '/activities':
+        return 'Activities'
+      case '/documents':
+        return 'Documents'
+      case '/cypher-ai':
+        return 'Cypher-ai'
       default:
         return '';
     }
@@ -62,6 +68,12 @@ const Layout = ({ children }) => {
         return 'Home - Incidents';
       case '/locations':
         return 'Incidents - DR-4699 March 2023 Severe Storms';
+      case '/activities':
+        return 'Activities'
+      case '/documents':
+        return 'Documents'
+      case '/cypher-ai':
+        return 'Cypher-ai'
       default:
         return '';
     }
@@ -95,6 +107,10 @@ function App() {
             <Route path="/second-step" element={<IncidentFour />} />
             <Route path="/finished" element={<Finished />} />
             <Route path="/locations" element={<Location />} />
+            <Route path="/activities" element={<BlankPage/>} />
+            <Route path="/documents" element={<BlankPage/>} />
+            <Route path="/cypher-ai" element={<BlankPage/>} />
+
           </Routes>
         </Layout>
       </HandleStateProvider>

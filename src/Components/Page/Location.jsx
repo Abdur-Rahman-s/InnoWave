@@ -5,8 +5,8 @@ import LocationCard from '../Shared/LocationCard';
 
 function Location() {
     return (
-        <section className='container mx-auto px-4 md:px-6 lg:px-8'>
-            <div className='flex flex-col md:flex-row gap-8 md:gap-12 mt-8 md:mt-10'>
+        <section className='container mx-auto px-4 md:px-6 lg:px-0'>
+            <div className='flex flex-col md:flex-row gap-8 md:gap-[94px] mt-8 md:mt-10'>
                 <div id='first_Child' className='flex flex-col gap-10 md:w-2/3'>
 
                     <div className='flex flex-col gap-6 justify-center border-b border-border-color pb-[40px] '>

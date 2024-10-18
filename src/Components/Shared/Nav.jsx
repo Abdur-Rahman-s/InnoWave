@@ -67,7 +67,7 @@ const Nav = ({ title, value, text, classNames, className }) => {
         '/activities': 'Activities',
         '/documents': 'Documents',
         '/cypher-ai': 'Cypher AI',
-      };
+    };
 
     const PreviusPage = () => {
         if (location.pathname === '/get-started') {
@@ -121,25 +121,26 @@ const Nav = ({ title, value, text, classNames, className }) => {
 
                     {/* Dynamic Navigation Links for larger screens */}
                     <div className='hidden md:flex items-center'>
-                    <ul className="flex gap-6 text-gray-600">
-    {navLinks.map(link => (
-        <li key={link.name}>
-            <Link
-                to={link.path}
-                className={`nav-link-design ${activeLink === link.name || pathsWithBorder[location.pathname] === link.name ? 'border-b-2 border-dark' : 'border-none'}`} // Match active link or current location
-                onClick={() => handleActiveLink(link.name)}
-            >
-                {link.name}
-            </Link>
-        </li>
-    ))}
-</ul>
+                        <ul className="flex gap-6 text-gray-600">
+                            {navLinks.map(link => (
+                                <li key={link.name}>
+                                    <Link
+                                        to={link.path}
+                                        className={`nav-link-design ${activeLink === link.name || pathsWithBorder[location.pathname] === link.name ? 'border-b-2 border-dark' : 'border-none'}`}
+                                        onClick={() => handleActiveLink(link.name)}
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
                     {/* Profile Section for larger screens */}
                     <div className='hidden lg:flex items-center gap-4'>
-                        <div className='relative h-12 w-12 bg-white rounded-full flex'>
-                            <img src={bellicon} alt="Bell Icon" className='p-2' />
+                        <div className='relative h-12 w-12 bg-white rounded-full flex  '>
+                            <div className='h-[10px] w-[10px] rounded-full bg-green-500 absolute left-9 top-1 ' ></div>
+                            <img src={bellicon} alt="Bell Icon" className='p-2 absolute left-1 top-1 ' />
                         </div>
                         <img src={profile} alt="Profile" className='h-12 w-12 rounded-full' />
                         <div>
@@ -243,11 +244,17 @@ const Nav = ({ title, value, text, classNames, className }) => {
 
                         <div className='flex gap-3 mt-4 md:mt-0'>
                             <Button className='bg-white font-bold rounded-md py-2 px-4 shadow-md hover:shadow-lg'>
-                                <span className='text-gray'  ><Link to={PreviusPage()}  >Back</Link></span>
+                                <Link to={PreviusPage()} className='text-gray w-full h-full flex items-center justify-center'>
+                                    Back
+                                </Link>
                             </Button>
-                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange' >
-                                <Link to={incidentLink()}>{incidentText()}</Link>
+
+                            <Button className='bg-orange-500 text-white rounded-md text-xs py-2 px-4 shadow-md hover:bg-orange'>
+                                <Link to={incidentLink()} className='w-full h-full flex items-center justify-center'>
+                                </Link>
+                                {incidentText()}
                             </Button>
+
 
                         </div>
                     </div>
