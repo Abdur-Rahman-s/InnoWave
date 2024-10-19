@@ -9,7 +9,7 @@ const IncidentOption = ({ image, title }) => {
 
     return (
         <div 
-            className={`flex gap-[10px] px-[10px] py-[22px] w-[165px] sm:w-[180px] items-center rounded-md border border-[#F4F4F5] cursor-pointer transition-colors duration-300 ${
+            className={`flex gap-[10px] px-[10px] hover:bg-orange   hover:text-white py-[22px] w-[165px] sm:w-[180px] items-center rounded-md border border-[#F4F4F5] cursor-pointer transition-colors duration-300 ${
                 click ? 'bg-orange text-[#E4E4E7]' : 'bg-[#E4E4E7]'
             }`}
             onClick={handleClick} 
